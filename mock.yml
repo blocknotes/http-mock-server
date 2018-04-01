@@ -24,6 +24,20 @@ routes:
         request: Post id {params[:id]} - request path {request.path}
         more:
           is_first: "conditional check {params[:id] == '1' ? 'first' : 'other'}"
+        an_array:
+          - me
+          - myself
+          - I
+        an_array2:
+          -
+            name: me
+            age: 20
+          -
+            name: myself
+            age: 30
+          -
+            name: I
+            age: 40
   -
     get: '/pry'
     body:

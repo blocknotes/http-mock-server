@@ -7,12 +7,9 @@ Features:
 - routes reloaded every time (but only the updated ones)
 - string interpolations on response body (even *binding.pry* to inspect a request)
 
-## Install
-
-`gem install http-mock-server`
-
 ## Usage
 
+- Install the gem: `gem install http-mock-server`
 - Create a *mock.yml* config file in the current directory (see the [example](mock.yml))
 - Execute: `http-mock-server`
 
@@ -44,6 +41,20 @@ routes:
         request: Post id {params[:id]} - request path {request.path}
         more:
           is_first: "conditional check {params[:id] == '1' ? 'first' : 'other'}"
+        an_array:
+          - me
+          - myself
+          - I
+        an_array2:
+          -
+            name: me
+            age: 20
+          -
+            name: myself
+            age: 30
+          -
+            name: I
+            age: 40
   -
     get: '/pry'
     body:

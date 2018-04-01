@@ -105,10 +105,10 @@ class HttpMockServer < Sinatra::Base
 
   def traverse!( hash )
     hash.each do |k, v|
-      if v.is_a?(Hash)
+      if v.is_a?(Hash) || v.is_a?(Array)
         traverse! v
       else
-        hash[k] = interpolate v
+        hash[k] = interpolate v if v
       end
     end
   end
