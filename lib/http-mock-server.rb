@@ -10,6 +10,7 @@ $config = YAML.load File.read(CONFIG_FILE) rescue begin
     exit 1
   end
 $config['config'] ||= {}
+$config['config']['namespace'] ||= ''
 $config['routes'] ||= []
 
 class HttpMockServer < Sinatra::Base
@@ -40,7 +41,7 @@ class HttpMockServer < Sinatra::Base
       break if method
     end
     if method
-      send method, rt[method] do
+      send method, $config['config']['namespace'] + rt[method] do
         route = reload_route i
         code = route['status'] || 200
         log code, method.upcase, request.path
@@ -90,10 +91,9 @@ class HttpMockServer < Sinatra::Base
     end
   end
 
-  def interpolate( string )
-    return '' unless string
-    vars = string.scan( /{(.*?)}/ ).flatten.map{|t| eval(t)}
-    string.gsub( /{(.*?)}/, '%s' ) % vars
+  def interpolate( input )
+    vars = input.to_s.scan( /{(.*?)}/ ).flatten.map{|t| eval(t)}
+    input.to_s.gsub( /{(.*?)}/, '%s' ) % vars
   end
 
   def reload_route( route_id )

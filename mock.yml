@@ -1,9 +1,10 @@
 ---
 config:
-  # no_cors: true  # don't send CORS headers
-  port: 8080       # server port
-  # timeout: 10    # response timeout
-  verbose: true    # shows request params
+  namespace: '/api/v1'  # prepend to every route
+  # no_cors: true       # don't send CORS headers
+  port: 8080            # server port
+  # timeout: 10         # response timeout
+  verbose: true         # shows request params
 not_found:
   body:
     message: This is not the path you are looking for...
