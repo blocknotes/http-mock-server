@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+ENV['http_mock_server_bin'] = '1'
+
+require 'rack'
+require 'tilt'
+require 'http-mock-server'

@@ -1,0 +1,48 @@
+---
+config:
+  # no_cors: true  # don't send CORS headers
+  port: 8080       # server port
+  # timeout: 10    # response timeout
+  verbose: true    # shows request params
+not_found:
+  body:
+    message: This is not the path you are looking for...
+routes:
+  -
+    get: '/posts'
+    headers:
+      'A-Random-Header': Something
+    body:
+      message: List of posts
+  -
+    get: '/posts/:id'
+    body:
+      content: A random number {rand} !
+      extra:
+        today: Today is {DateTime.now}
+        request: Post id {params[:id]} - request path {request.path}
+        more:
+          is_first: "conditional check {params[:id] == '1' ? 'first' : 'other'}"
+  -
+    get: '/pry'
+    body:
+      message: '{binding.pry}'
+  -
+    post: '/posts'
+    status: 201
+    body:
+      code: 201
+      result: Ok
+  -
+    delete: '*'
+    status: 405
+    body:
+      message: Please don't do it
+  -
+    options: '*'
+    status: 200
+    headers:
+      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Methods': 'HEAD,GET,PUT,DELETE,OPTIONS'
+      'Access-Control-Allow-Headers': 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept'
+      'Access-Control-Expose-Headers': 'X-Total-Count'
