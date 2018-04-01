@@ -68,6 +68,8 @@ routes:
       'Access-Control-Expose-Headers': 'X-Total-Count'
 ```
 
+See [docs](http://sinatrarb.com/intro.html) for Sinatra request variables.
+
 ## Notes
 
 - Routes are loaded from the Yaml config at each request, but it updates only the exiting routes; new / old routes are ignored, you have to restart *http-mock-server* to include them
