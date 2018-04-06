@@ -4,7 +4,7 @@ $LOAD_PATH.unshift( lib ) unless $LOAD_PATH.include?( lib )
 
 Gem::Specification.new do |spec|
   spec.name        = 'http-mock-server'
-  spec.version     = '0.1.4'
+  spec.version     = '0.1.5'
   spec.authors     = [ 'Mattia Roccoberton' ]
   spec.email       = 'mat@blocknot.es'
   spec.homepage    = 'https://github.com/blocknotes/http-mock-server'
@@ -23,7 +23,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.required_ruby_version = '>= 2.0.0'
-
   spec.add_runtime_dependency 'pry', '~> 0.11'
   spec.add_runtime_dependency 'sinatra', '~> 2.0'
 end

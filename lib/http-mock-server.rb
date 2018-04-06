@@ -1,12 +1,26 @@
+# coding: utf-8
 require 'pry'
 require 'sinatra/base'
 require 'yaml'
 
-CONFIG_FILE = 'mock.yml'
 MIME_JSON = ['application/json']
 
-$config = YAML.load File.read(CONFIG_FILE) rescue begin
-    puts "Config file not found: #{CONFIG_FILE}"
+$config_file = 'mock.yml'
+if ARGV.length > 0
+  case ARGV[0]
+  when '-h'
+    puts "#{$0} config.yml"
+    exit 0
+  else
+    if File.exist?(ARGV[0])
+      $config_file = ARGV[0]
+      puts "> Using config file: #{$config_file}"
+    end
+  end
+end
+
+$config = YAML.load File.read($config_file) rescue begin
+    puts "Config file not found: #{$config_file}"
     exit 1
   end
 $config['config'] ||= {}
@@ -97,7 +111,7 @@ class HttpMockServer < Sinatra::Base
   end
 
   def reload_route( route_id )
-    config = YAML.load File.read(CONFIG_FILE) || {}
+    config = YAML.load File.read($config_file) || {}
     return config['not_found'] || {} if route_id < 0
     return {} if !config['routes'] || !config['routes'][route_id]
     config['routes'][route_id]

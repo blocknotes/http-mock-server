@@ -13,6 +13,12 @@ Features:
 - Create a *mock.yml* config file in the current directory (see the [example](mock.yml))
 - Execute: `http-mock-server`
 
+## Options
+
+Only one option: the config yaml file to use
+
+Example: `http-mock-server conf.yml`
+
 ## Config example
 
 ```yml
