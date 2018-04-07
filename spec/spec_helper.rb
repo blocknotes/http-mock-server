@@ -8,7 +8,9 @@ require_relative File.expand_path '../../lib/http-mock-server.rb', __FILE__
 
 module RSpecMixin
   include Rack::Test::Methods
-  def app() HttpMockServer end
+  def app
+    HttpMockServer
+  end
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

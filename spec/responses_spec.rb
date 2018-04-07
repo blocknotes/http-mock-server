@@ -5,7 +5,7 @@ RSpec.describe HttpMockServer do
     get '/'
     conf = $config['not_found']
     expect(last_response.body).to eq conf['body'].to_json
-    expect(last_response.status).to eq (conf['status'] || 404)
+    expect(last_response.status).to eq conf['status'] || 404
     unless $config['config']['no_cors']
       expect(HttpMockServer::CORS_HEADERS.to_a - last_response.headers.to_a).to be_empty
     end
