@@ -3,11 +3,16 @@ require 'pry'
 require 'sinatra/base'
 require 'yaml'
 
+require_relative File.expand_path( '../version.rb', __FILE__ )
+
 $config_file = ENV['MOCK_CONFIG']
 if ARGV.length > 0
   case ARGV[0]
+  when '-v'
+    puts "http-mock-server v#{MOCK_SERVER_VERSION}"
+    exit 0
   when '-h'
-    puts "#{$0} config.yml"
+    puts "http-mock-server v#{MOCK_SERVER_VERSION}\nSyntax: http-mock-server config.yml"
     exit 0
   else
     if File.exist?(ARGV[0])
@@ -107,8 +112,8 @@ class HttpMockServer < Sinatra::Base
   end
 
   def interpolate( input )
-    vars = input.to_s.scan( /{(.*?)}/ ).flatten.map{|t| eval(t)}
-    input.to_s.gsub( /{(.*?)}/, '%s' ) % vars
+    vars = input.to_s.scan( /\#{(.*?)}/ ).flatten.map{|t| eval(t)}
+    input.to_s.gsub( /\#{(.*?)}/, '%s' ) % vars
   end
 
   def reload_route( route_id )

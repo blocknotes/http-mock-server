@@ -18,12 +18,12 @@ routes:
   -
     get: '/posts/:id'
     body:
-      content: A random number {rand} !
+      content: 'A random number #{rand} !'
       extra:
-        today: Today is {DateTime.now}
-        request: Post id {params[:id]} - request path {request.path}
+        today: 'Today is #{DateTime.now}'
+        request: 'Post id #{params[:id]} - request path #{request.path}'
         more:
-          is_first: "conditional check {params[:id] == '1' ? 'first' : 'other'}"
+          is_first: "conditional check #{params[:id] == '1' ? 'first' : 'other'}"
         an_array:
           - me
           - myself
@@ -41,7 +41,7 @@ routes:
   -
     get: '/pry'
     body:
-      message: '{binding.pry}'
+      message: '#{binding.pry}'
   -
     post: '/posts'
     status: 201

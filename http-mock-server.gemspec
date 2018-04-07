@@ -1,10 +1,11 @@
 # coding: utf-8
 lib = File.expand_path( '../lib', __FILE__ )
 $LOAD_PATH.unshift( lib ) unless $LOAD_PATH.include?( lib )
+require_relative File.expand_path( '../lib/version.rb', __FILE__ )
 
 Gem::Specification.new do |spec|
   spec.name        = 'http-mock-server'
-  spec.version     = '0.1.6'
+  spec.version     = MOCK_SERVER_VERSION
   spec.authors     = [ 'Mattia Roccoberton' ]
   spec.email       = 'mat@blocknot.es'
   spec.homepage    = 'https://github.com/blocknotes/http-mock-server'

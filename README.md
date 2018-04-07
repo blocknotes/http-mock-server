@@ -24,6 +24,7 @@ Config file can also be passed setting `ENV['MOCK_CONFIG']` environment variable
 ## Config example
 
 ```yml
+---
 config:
   namespace: '/api/v1'  # prepend to every route
   # no_cors: true       # don't send CORS headers
@@ -43,12 +44,12 @@ routes:
   -
     get: '/posts/:id'
     body:
-      content: A random number {rand} !
+      content: 'A random number #{rand} !'
       extra:
-        today: Today is {DateTime.now}
-        request: Post id {params[:id]} - request path {request.path}
+        today: 'Today is #{DateTime.now}'
+        request: 'Post id #{params[:id]} - request path #{request.path}'
         more:
-          is_first: "conditional check {params[:id] == '1' ? 'first' : 'other'}"
+          is_first: "conditional check #{params[:id] == '1' ? 'first' : 'other'}"
         an_array:
           - me
           - myself
@@ -66,7 +67,7 @@ routes:
   -
     get: '/pry'
     body:
-      message: '{binding.pry}'
+      message: '#{binding.pry}'
   -
     post: '/posts'
     status: 201
