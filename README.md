@@ -1,4 +1,4 @@
-# HTTP Mock Server [![Gem Version](https://badge.fury.io/rb/http-mock-server.svg)](https://badge.fury.io/rb/http-mock-server)
+# HTTP Mock Server [![Gem Version](https://badge.fury.io/rb/http-mock-server.svg)](https://badge.fury.io/rb/http-mock-server) [![Build Status](https://travis-ci.org/blocknotes/http-mock-server.svg)](https://travis-ci.org/blocknotes/http-mock-server)
 
 A Ruby HTTP Mock Server based on Sinatra. JSON responses.
 
