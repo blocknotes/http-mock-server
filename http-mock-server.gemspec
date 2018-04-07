@@ -27,5 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'sinatra', '~> 2.0'
 
   spec.add_development_dependency 'rack-test', '~> 1.0'
+  spec.add_development_dependency 'rake', '~> 12.3'
   spec.add_development_dependency 'rspec', '~> 3.7'
 end
