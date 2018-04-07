@@ -7,7 +7,7 @@ begin
     # t.rcov = true
   end
 
-  task :default => :spec
+  task default: :spec
 rescue LoadError
   puts '! rspec load error'
 end
