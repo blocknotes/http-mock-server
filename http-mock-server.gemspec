@@ -4,7 +4,7 @@ $LOAD_PATH.unshift( lib ) unless $LOAD_PATH.include?( lib )
 
 Gem::Specification.new do |spec|
   spec.name        = 'http-mock-server'
-  spec.version     = '0.1.5'
+  spec.version     = '0.1.6'
   spec.authors     = [ 'Mattia Roccoberton' ]
   spec.email       = 'mat@blocknot.es'
   spec.homepage    = 'https://github.com/blocknotes/http-mock-server'
@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
 
   # spec.files         = `git ls-files -z`.split("\x0")
   spec.files  = Dir['lib/*.rb'] + Dir['bin/*']
-  spec.files += Dir['[A-Z]*'] + Dir['test/**/*']
+  spec.files += Dir['[A-Z]*'] + Dir['spec/**/*']
   spec.files.reject! { |fn| fn.include? "CVS" }
 
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -25,4 +25,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.0.0'
   spec.add_runtime_dependency 'pry', '~> 0.11'
   spec.add_runtime_dependency 'sinatra', '~> 2.0'
+
+  spec.add_development_dependency 'rack-test', '~> 1.0'
+  spec.add_development_dependency 'rspec', '~> 3.7'
 end

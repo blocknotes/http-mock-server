@@ -3,9 +3,7 @@ require 'pry'
 require 'sinatra/base'
 require 'yaml'
 
-MIME_JSON = ['application/json']
-
-$config_file = 'mock.yml'
+$config_file = ENV['MOCK_CONFIG']
 if ARGV.length > 0
   case ARGV[0]
   when '-h'
@@ -18,6 +16,7 @@ if ARGV.length > 0
     end
   end
 end
+$config_file ||= 'mock.yml'
 
 $config = YAML.load File.read($config_file) rescue begin
     puts "Config file not found: #{$config_file}"
@@ -28,6 +27,12 @@ $config['config']['namespace'] ||= ''
 $config['routes'] ||= []
 
 class HttpMockServer < Sinatra::Base
+  MIME_JSON = ['application/json']
+  CORS_HEADERS = {
+    'Access-Control-Allow-Origin'  => '*',
+    'Access-Control-Allow-Methods' => 'POST, GET, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers' => 'Origin, Content-Type, Accept, Authorization, Token',
+  }
   METHODS = %w(connect delete get head options patch post put trace)
 
   # set :environment, :development
@@ -40,11 +45,7 @@ class HttpMockServer < Sinatra::Base
   before do
     content_type :json
     unless $config['config']['no_cors']
-      headers(
-        'Access-Control-Allow-Origin'  => '*',
-        'Access-Control-Allow-Methods' => 'POST, GET, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers' => 'Origin, Content-Type, Accept, Authorization, Token',
-      )
+      headers CORS_HEADERS
     end
   end
 
