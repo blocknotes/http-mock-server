@@ -12,8 +12,8 @@ Lint/InterpolationCheck:
   Enabled: false
 Metrics/AbcSize:
   Enabled: false
-# Metrics/BlockLength:
-#   Enabled: false
+Metrics/BlockLength:
+  Enabled: false
 # Metrics/ClassLength:
 #   Enabled: false
 # Metrics/CyclomaticComplexity:

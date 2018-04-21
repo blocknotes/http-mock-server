@@ -122,13 +122,23 @@ class HttpMockServer < Sinatra::Base
     config['routes'][route_id]
   end
 
-  def traverse!(hash)
-    hash.each do |k, v|
-      if v.is_a?(Hash) || v.is_a?(Array)
-        traverse! v
-      elsif v
-        hash[k] = interpolate v
+  def traverse!(node)
+    if node.is_a?(Hash)
+      node.each do |k, v|
+        traverse_node(node, k, v)
       end
+    elsif node.is_a?(Array)
+      node.each_with_index do |v, i|
+        traverse_node(node, i, v)
+      end
+    end
+  end
+
+  def traverse_node(node, k, v)
+    if v.is_a?(Hash) || v.is_a?(Array)
+      traverse! v
+    elsif v
+      node[k] = interpolate v
     end
   end
 

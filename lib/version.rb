@@ -1,1 +1,1 @@
-MOCK_SERVER_VERSION = '0.2.0'.freeze
+MOCK_SERVER_VERSION = '0.2.1'.freeze
